@@ -116,14 +116,14 @@ def gen_word_replace(series,year,quanter)
     
     arr1 = get_excel(Dir.pwd + "/../流向处理/csv/in_原始数据.csv",'A2','J10000000')
     
-    total_bendi = arr1.select {|a| a[6] == a[7]}.inject(0) { 
+    bak1 = total_bendi = arr1.select {|a| a[6] == a[7]}.inject(0) { 
         |result, element| 
         result + element[-1].to_i }
     #puts "total_bendi=#{total_bendi}"
 
     total_bendi = total_bendi / 1000 * 1000    
 
-    total_waiqian = arr1.select {|a| a[6] != a[7]}.inject(0) { 
+    bak2 = total_waiqian = arr1.select {|a| a[6] != a[7]}.inject(0) { 
         |result, element| 
         result + element[-1].to_i }
     
@@ -136,6 +136,12 @@ def gen_word_replace(series,year,quanter)
     total_waiqian = change_str(total_waiqian)
     #puts "total1=#{total1}",total_bendi,total_waiqian
     #exit
+
+    if total1.to_i == 0 
+        total1 = "0(#{bak1+bak2})"
+        total_bendi = "0(#{bak1})"
+        total_waiqian = "0(#{bak2})"
+    end
 
     arr = get_excel(Dir.pwd + "/../网络数据/csv/独立车商_out.csv",'A2','A11')
     arr1 = []
