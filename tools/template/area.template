@@ -1,0 +1,57 @@
+option = {
+    backgroundColor: '#ffffff',
+    animation: false, // save image...
+
+    tooltip: {
+        trigger: 'axis',
+        position: function (pt) {
+            return [pt[0], '10%'];
+        }
+    },
+    title: {
+        left: 'center',
+        text: '',
+    },
+    
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: [
+            PARAM0
+        ]
+        //['a','b','c']
+    },
+    yAxis: {
+        type: 'value',
+        boundaryGap: [0, '100%']
+    },
+    
+    series: [
+        {
+            name:'数据',
+            type:'line',
+            smooth:true,
+            symbol: 'none',
+            sampling: 'average',
+            itemStyle: {
+                normal: {
+                    color: 'PARAM4' //'rgb(255, 70, 131)'
+                }
+            },
+            areaStyle: {
+                normal: {
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                        offset: 0,
+                        color: 'PARAM2' //'rgb(255, 158, 68)'
+                    }, {
+                        offset: 1,
+                        color: 'PARAM3' //'rgb(255, 70, 131)'
+                    }])
+                }
+            },
+            data: [
+                PARAM1 //['a',20],['b',50],['c',40],
+                ]
+        }
+    ]
+};

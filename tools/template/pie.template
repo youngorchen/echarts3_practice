@@ -1,0 +1,71 @@
+option = {
+    backgroundColor: '#ffffff',
+    animation: false, // save image...
+
+    title: {
+        text: '',
+        left: 'center',
+        top: 0,
+        textStyle: {
+            color: '#ccc'
+        }
+    },
+
+    tooltip : {
+        trigger: 'item',
+        formatter: "{a} <br/>{b} : {c} ({d}%)"
+    },
+
+    visualMap: {
+        show: false,
+        min: PARAM0,
+        max: PARAM1,
+        inRange: {
+            colorLightness: [0, 0.8]
+        }
+    },
+    series : [
+        {
+            name:'',
+            type:'pie',
+            radius : [180, 50],
+            center: ['50%', '50%'],
+            data:[
+                //{value:335, name:'直接访问'}, {value:310, name:'邮件营销'},
+                PARAM2
+            ].sort(function (a, b) { return a.value - b.value; }),
+            roseType: 'area',
+            label: {
+                normal: {
+                    textStyle: {
+                        color: 'rgba(0, 0, 0, 0)'
+                    }
+                },
+                //fontSize:260,
+            },
+            labelLine: {
+                normal: {
+                    lineStyle: {
+                        color: 'rgba(255, 255, 255, 0.3)'
+                    },
+                    smooth: 0.2,
+                    length: 10,
+                    length2: 20
+                }
+            },
+            itemStyle: {
+                normal: {
+                    color:  'PARAM3',//'#c23531',
+                    shadowBlur: 200,
+                    shadowColor: 'rgba(0, 0, 0, 0)'
+                }
+            },
+
+            animationType: 'scale',
+            animationEasing: 'elasticOut',
+            animationDelay: function (idx) {
+                return Math.random() * 200;
+            }
+        }
+    ]
+};

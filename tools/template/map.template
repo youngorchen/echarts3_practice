@@ -1,0 +1,124 @@
+var data = [
+    //{name: "北京", value:449},
+    PARAM0
+];
+var geoCoordMap = {
+    //"海门":[121.15,31.89], "鄂尔多斯":[109.781327,39.608266],
+    PARAM1
+};
+
+var convertData = function (data) {
+    var res = [];
+    for (var i = 0; i < data.length; i++) {
+        var geoCoord = geoCoordMap[data[i].name];
+        if (geoCoord) {
+            res.push({
+                name: data[i].name,
+                value: geoCoord.concat(data[i].value)
+            });
+        }
+    }
+    return res;
+};
+
+option = {
+    backgroundColor: '#ffffff',
+    animation: false, // save image...
+
+    title: {
+        text: '',
+        subtext: '',
+        sublink: '',
+        left: 'center',
+        textStyle: {
+            color: '#fff'
+        }
+    },
+    tooltip : {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        y: 'bottom',
+        x:'right',
+        data:[''],
+        textStyle: {
+            color: '#fff'
+        }
+    },
+    geo: {
+        map: 'china',
+        label: {
+            emphasis: {
+                show: false
+            }
+        },
+        roam: true,
+        itemStyle: {
+            normal: {
+                areaColor: '#fff',
+                borderColor: '#111'
+            },
+            emphasis: {
+                areaColor: '#fff'
+            }
+        }
+    },
+    series : [
+        {
+            name: '',
+            type: 'scatter',
+            coordinateSystem: 'geo',
+            data: convertData(data),
+            symbolSize: function (val) {
+                return val[2] / 100;
+            },
+            label: {
+                normal: {
+                    formatter: '{b}',
+                    position: 'right',
+                    show: false
+                },
+                emphasis: {
+                    show: true
+                }
+            },
+            itemStyle: {
+                normal: {
+                    color: 'PARAM4' //'#ddb926'           // 小散点颜色
+                }
+            }
+        },
+        {
+            name: 'Top 5',
+            type: 'effectScatter',
+            coordinateSystem: 'geo',
+            data: convertData(data.sort(function (a, b) {
+                return b.value - a.value;
+            }).slice(0, 50)),                       // TOP的个数
+            symbolSize: function (val) {
+                return val[2] * (35/(PARAM3 - PARAM2)) ;               // 面积放大10倍
+            },
+            showEffectOn: '',                  // 去掉涟漪线
+            rippleEffect: {
+                brushType: 'stroke'
+            },
+            hoverAnimation: true,
+            label: {
+                normal: {
+                    formatter: '{b}',
+                    position: 'right',
+                    show: false       // TOP地区名称不显示
+                }
+            },
+            itemStyle: {
+                normal: {
+                    color: 'PARAM4', //'#f4e925',    // TOP5散点的颜色
+                    shadowBlur: 1,
+                    shadowColor: '#333'
+                }
+            },
+            zlevel: 1
+        }
+    ]
+};

@@ -1,0 +1,69 @@
+var geoCoordMap = {
+    //"海门":[121.15,31.89], "鄂尔多斯":[109.781327,39.608266],
+    PARAM1
+};
+
+var convertData = function (data) {
+    var res = [];
+    for (var i = 0; i < data.length; i++) {
+        var geoCoord = geoCoordMap[data[i].name];
+        if (geoCoord) {
+            res.push(geoCoord.concat(data[i].value));
+        }
+    }
+    return res;
+};
+
+option = {
+    title: {
+        text: '',
+        subtext: '',
+        sublink: '',
+        left: 'center',
+        textStyle: {
+            color: '#00'
+        }
+    },
+
+    backgroundColor: '#ffffff',
+    animation: false, // save image...
+
+    visualMap: {
+        min: PARAM2,
+        max: PARAM3,
+        splitNumber: 5,
+        inRange: {
+            color: ['#d94e5d','#eac736','#50a3ba'].reverse()
+        },
+        textStyle: {
+            color: '#00'
+        }
+    },
+    geo: {
+        map: 'china',
+        label: {
+            emphasis: {
+                show: false
+            }
+        },
+        roam: true,
+        itemStyle: {
+            normal: {
+                areaColor: '#323c48',
+                borderColor: '#111'
+            },
+            emphasis: {
+                areaColor: '#2a333d'
+            }
+        }
+    },
+    series: [{
+        name: 'AQI',
+        type: 'heatmap',
+        coordinateSystem: 'geo',
+        data: convertData([
+            //{name: "海门", value: 9}, {name: "鄂尔多斯", value: 12},
+            PARAM0
+        ])
+    }]
+};

@@ -1,0 +1,61 @@
+//app.title = '嵌套环形图';
+
+option = {
+    backgroundColor: '#ffffff',
+    animation: false, // save image...
+    legend: {
+        orient: 'vertical',
+        x: 'left',
+        y: 'center', 
+        // data:  PARAM0 //['1.5L','1.6L','1.8L']
+    },
+    
+    series: [
+        {
+            name:'本地过户量',
+            type:'pie',
+            selectedMode: 'single',
+            radius: [0, '30%'],
+
+            label: {
+                normal: {
+                    //formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
+                    position: 'inner',
+                    //fontSize: 12
+                    fontSize: 0.00001
+                }
+            },
+            labelLine: {
+                normal: {
+                    show: false
+                }
+            },
+            
+            data:
+                PARAM2 //[{value:5122, name:'1.5L'}, {value:29071, name:'1.6L'}]
+                
+            
+        },
+        {
+            name:'外迁过户量',
+            type:'pie',
+            radius: ['45%', '70%'],
+
+            label: {
+                normal: {
+                    //formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
+                    position: 'inner',
+                    //fontSize: 16
+                    fontSize: 0.00001
+                }
+            },
+            labelLine: {
+                normal: {
+                    show: false
+                }
+            },
+
+            data: PARAM1 //[{value:5122, name:'1.5L'}, {value:29071, name:'1.6L'}]
+        }
+    ]
+};

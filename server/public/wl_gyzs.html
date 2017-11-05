@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+  <div id="main" style="width: 600px;height:400px;background-color:#ff;" ></div>
+  
+
+  <script src="js/echarts.js "></script>
+  
+  <script src="js/china.js "></script>
+  <script src="js/jquery-1.9.1.min.js "></script>
+
+
+  <script>
+    //alert('cool');
+    var myChart = echarts.init(document.getElementById('main'));
+    //myChart.title = '坐标轴刻度与标签对齐';
+    
+    file = 'wangluoshuju/wl_gyzs';
+    file_name = file + '.png';
+
+   
+    //myChart.setOption(option);
+
+  </script>
+
+
+  <script src= "my_js/wl_gyzs.js" ></script>
+
+ 
+  <script src="js/save.js "></script>
+  
+
+
+</body>
+
+</html>

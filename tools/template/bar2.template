@@ -1,0 +1,72 @@
+var labelLeft = {
+    normal: {
+        position: 'left'
+    }
+
+};
+option = {
+    backgroundColor: '#ffffff',
+    title: {
+        text: ' ',
+        subtext: '',
+        sublink: ''
+    },
+    tooltip : {
+        trigger: 'axis',
+        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+        }
+    },
+    grid: {
+        top: 30,
+        bottom: 30
+    },
+    xAxis: {
+        type : 'value',
+        position: 'top',
+        show: false,
+        splitLine: {lineStyle:{type:'dashed'}},
+    },
+    yAxis: {
+        type : 'category',
+        axisLine: {show: false},
+        axisLabel: {show: false},
+        axisTick: {show: false},
+        splitLine: {show: false},
+        data : [
+            '（10）',
+            '（9）',
+            '（8）',
+            '（7）',
+            '（6）',
+            '（5）',
+            '（4）',
+            '（3）',
+            '（2）',
+            '（1）'
+        ]
+    },
+    series : [
+        {
+            name:'',
+            type:'bar',
+            stack: '',
+            label: {
+                normal: {
+                    show: true,
+                    formatter: '{b}'
+                }
+            },
+            data:[
+                //{value: 29, label: labelLeft}, 升序
+                PARAM0
+            ],
+            barWidth: 20,
+            itemStyle:{
+                normal:{
+                    color:  'PARAM1' //'#2e4e7e'
+                }
+            },
+        }
+    ]
+};
