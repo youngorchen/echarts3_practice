@@ -70,38 +70,6 @@ def replace_doc(doc, find, repl)
 end
 
 
-def get_excel(file_name,range1,range2)
-    puts file_name
-    str = IO.read(file_name,:encoding=>"gbk")
-    s = RubyExcel::Workbook.new.load( CSV.parse( to_utf8(str) )) 
-    len = s.length
-    puts "#{len} records!"
-    r1_w = ''
-    r2_w = ''
-    r1_n = 0
-    r2_n = 0
-
-    if range1 =~ /(([a-z]|[A-Z])+)(\d+)/
-        r1_w = $1
-        r1_n = [$3.to_i,len].min
-    end
-
-    if range2 =~ /(([a-z]|[A-Z])+)(\d+)/
-        r2_w = $1
-        r2_n = [$3.to_i,len].min
-    end
-    puts "==========================>#{r1_w}#{r1_n},#{r2_w}#{r2_n} ==========================>>>>"
-    r = s.range("#{r1_w}#{r1_n}","#{r2_w}#{r2_n}").value
-    #pp r
-    if r1_w == r2_w
-        #puts "-"
-        r.flatten.find_all {|a|  a} 
-    else
-    #    puts "!" * 80 
-        r.find_all {|a|  a if a[0]} 
-    end
-end
-
 def gen_word_replace(series,year,quanter)
     file =Dir.pwd+'./template.docx'
 

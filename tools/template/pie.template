@@ -28,7 +28,7 @@ option = {
         {
             name:'',
             type:'pie',
-            radius : [180, 50],
+            radius : [160, 90],
             center: ['50%', '50%'],
             data:[
                 //{value:335, name:'直接访问'}, {value:310, name:'邮件营销'},

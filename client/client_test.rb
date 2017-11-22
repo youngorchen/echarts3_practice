@@ -14,5 +14,7 @@ Dir.glob("../server/public/*.html").each { | fn |
     sleep 3
 }
 
+sleep 10
+b.close
 #b.goto('http://127.0.0.1:4567/e2.html')
 

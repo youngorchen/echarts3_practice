@@ -13,21 +13,35 @@ del 网络数据\csv\* /S /Q
 
 rem set cx1=凯越 宝马5系 奔驰C级 嘉年华
 set cx1=%1
+set pat=%2
 
 copy /A /V /Y c:\temp\%cx1%_周转天数.csv .\周转天数\csv\in_原始数据.csv
 copy /A /V /Y c:\temp\%cx1%_网络数据.csv .\网络数据\csv\in_原始数据.csv
 copy /A /V /Y c:\temp\%cx1%_流向数据.csv .\流向处理\csv\in_原始数据.csv
 
 cd 流向处理
- ruby lxcl.rb
+ruby lxcl.rb
 
 cd ..\网络数据
 ruby wlsj.rb %cx1%
 
 rem pause
 
+rem +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+rem ...............................patch.............................
+rem +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+rem copy the patch_out file first from the related series..
+rem then call ruby patch.rb
+rem 
+copy /V /Y %pat%\%cx1%\电商top100_out.csv csv\电商top100_out.csv
+copy /V /Y %pat%\%cx1%\供应指数_out.csv csv\供应指数_out.csv
+
+ruby patch.rb
+
 cd ..\周转天数
- ruby zzts.rb
+ruby zzts.rb
+
 
 cd ..\..\client
 ruby client_test.rb
@@ -53,3 +67,4 @@ ruby e1.rb %cx1% '2017' '第三季度'
 copy /V /Y out.doc ..\output\%cx1%\result.docx
 
 cd ..
+
