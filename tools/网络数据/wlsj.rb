@@ -21,7 +21,8 @@ pp series
 
 source = $map_4s[series.to_sym] 
 pp source 
-#gets
+#STDIN.gets
+
 def group_by_col(recs,col,cs_name)
     h = {}
 
@@ -39,12 +40,15 @@ def get_excel_and_chart(recs,col,source,file_name,js_file,color1)
 
     recs_4s = []
 
-    unless source.class == [].class
-        recs_4s = recs.select { |e|  $ec_2_utf8.convert(e[col]) == source } 
+    if source == ''  #没有网络数据数据4s店映射的，取全部数据
+        recs_4s = recs
     else
-        recs_4s = recs.select { |e|  source.index($ec_2_utf8.convert(e[col])) }
+        unless source.class == [].class
+            recs_4s = recs.select { |e|  $ec_2_utf8.convert(e[col]) == source } 
+        else
+            recs_4s = recs.select { |e|  source.index($ec_2_utf8.convert(e[col])) }
+        end
     end
-
     #pp recs_4s
 
 
@@ -78,7 +82,7 @@ def get_excel_and_chart(recs,col,source,file_name,js_file,color1)
             puts h[i]
             puts e.message  
             puts e.backtrace.inspect 
-            exit
+            #exit
         end
     end
 

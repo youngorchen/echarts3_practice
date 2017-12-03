@@ -111,6 +111,7 @@ def gen_word_replace(series,year,quanter)
         total_waiqian = "0(#{bak2})"
     end
 
+  begin
     arr = get_excel(Dir.pwd + "/../网络数据/csv/独立车商_out.csv",'A2','A11')
     arr1 = []
     arr.each_with_index do |item, index|
@@ -128,7 +129,10 @@ def gen_word_replace(series,year,quanter)
     top10_4s = arr1.join('、')
     pp top10_4s
     #exit
-    
+  rescue
+    puts '*'*800
+    #STDIN.gets
+  end  
     arr = get_excel(Dir.pwd + "/../流向处理/csv/排量发布_out.csv",'A2','C300')
     pp arr
 

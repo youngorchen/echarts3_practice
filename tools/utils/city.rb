@@ -775,7 +775,10 @@ $map_4s = {
 '昂科威':'上汽通用别克',
 '明锐':'上汽大众斯柯达',
 '皇冠':'一汽丰田',
-'长安之星':''
+'长安之星':'',
+'科帕奇':'上汽通用雪佛兰',
+'锐腾':'',
+'标致3008':'',
 }
 
 def read_csv_gbk(file_name,n,sep=',')
@@ -925,6 +928,7 @@ def write_map3(recs,name_col,val_col,file_name,from_city,color1='#f4e925')
 
     (0..[recs.length-1,50].min).each do |i|
         t = recs[i]
+        next if t[val_col].to_i <= 0
         str1 += "[{name:\'#{from_city}\'},{name:'" + t[name_col].to_s  + "',value:" + t[val_col].to_s + "}],\n"
         min = t[val_col] if min > t[val_col]
         max = t[val_col] if max < t[val_col]
