@@ -999,7 +999,16 @@ def write_bar2(recs,name_col,val_col,file_name,color1)
         #pp t
         #pp recs
         #name_str += "'" + $ec_2_utf8.convert(t[name_col].to_s)  + "',\n"
-        name_str += "{ value:" + $ec_2_utf8.convert(t[val_col].to_s) + ", label: labelLeft},\n"
+        begin
+            name_str += "{ value:" + $ec_2_utf8.convert(t[val_col].to_s) + ", label: labelLeft},\n"
+        rescue Exception => e  
+            puts i
+            pp t
+            pp recs
+            pp val_col
+            puts e.message  
+            puts e.backtrace.inspect
+        end
     end
     
 

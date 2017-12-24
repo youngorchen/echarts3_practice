@@ -48,7 +48,7 @@ end
 def replace_doc(doc, find, repl)
     begin
         word = WIN32OLE.new('Word.Application')
-        word.Visible = true
+        #word.Visible = true
         doc = word.Documents.Open(doc)
 
         word.Selection.HomeKey(unit=6)
@@ -128,7 +128,9 @@ def gen_word_replace(series,year,quanter)
     end
     top10_4s = arr1.join('、')
     pp top10_4s
-    #exit
+
+    top10_4s = 'N/A' if top10_4s == ''
+    
   rescue
     puts '*'*800
     #STDIN.gets
@@ -168,7 +170,8 @@ def gen_word_replace(series,year,quanter)
 
     puts plfb_bendi_percent
 
-    
+    #pp top10_4s
+    #exit
 
     word = WIN32OLE.new('Word.Application')
     #word.visible = true
@@ -202,12 +205,17 @@ def gen_word_replace(series,year,quanter)
         '[plfb_waiqian_percent]' => plfb_waiqian_percent,
 
     }.each do |key, value|
+      begin
         word.Selection.HomeKey(unit=6) # start at beginning
         find = word.Selection.Find
         find.Text = "#{key}" # text must be in square brackets
         while word.Selection.Find.Execute
             word.Selection.TypeText(text=value) #replace
         end
+      rescue Exception => e  
+            puts e.message  
+            puts e.backtrace.inspect
+      end
     end
     #old_doc.Activate
     #old_doc.Content.InsertAfter (" The end.") 

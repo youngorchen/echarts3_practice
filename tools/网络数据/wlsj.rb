@@ -81,10 +81,13 @@ def get_excel_and_chart(recs,col,source,file_name,js_file,color1)
             puts h
             puts h[i]
             puts e.message  
-            puts e.backtrace.inspect 
+            puts e.backtrace.inspect
+            
             #exit
         end
     end
+
+    #puts "-"*80
 
     t10p =  to_n_point_float(t10*100.0/cs_tol,2)
     
@@ -101,6 +104,7 @@ def get_excel_and_chart(recs,col,source,file_name,js_file,color1)
     #generate pie...
     #write_pie(h[0..4],0,1,js_file)
     ht = [h[9],h[8],h[7],h[6],h[5],h[4],h[3],h[2],h[1],h[0]]
+    
     write_bar2(ht,0,1,js_file,color1)
 end
 
@@ -245,3 +249,4 @@ write_area(t[0..max],0,1,'wl_gyzs','#576b7c','#25f96e','#576b7c')
 ## TODO,read from db or tianyan?
 ##
 
+puts "\n"+"--"*80 + "wlsj done!"
