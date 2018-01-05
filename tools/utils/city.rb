@@ -766,7 +766,7 @@ $map_4s = {
 '迈腾':'一汽大众',
 '致胜':'长安福特',
 '英朗XT':'上汽通用别克',
-'揽胜极光':'捷豹',
+'揽胜极光':'捷豹路虎',
 '丰田RAV4':'一汽丰田',
 '英菲尼迪FX':'',
 '途观':'上汽大众',
@@ -1000,6 +1000,7 @@ def write_bar2(recs,name_col,val_col,file_name,color1)
         #pp recs
         #name_str += "'" + $ec_2_utf8.convert(t[name_col].to_s)  + "',\n"
         begin
+
             name_str += "{ value:" + $ec_2_utf8.convert(t[val_col].to_s) + ", label: labelLeft},\n"
         rescue Exception => e  
             puts i

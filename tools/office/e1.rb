@@ -95,7 +95,11 @@ def gen_word_replace(series,year,quanter)
         |result, element| 
         result + element[-1].to_i }
     
-    total_waiqian = total_waiqian / 1000 * 1000
+    if total_waiqian < 1000
+        total_waiqian * 1000 / 1000 
+    else
+        total_waiqian = total_waiqian / 1000 * 1000
+    end
 
     #puts total_bendi,total_waiqian
 
